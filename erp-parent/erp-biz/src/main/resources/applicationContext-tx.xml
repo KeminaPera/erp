@@ -12,7 +12,7 @@
     
     <!-- 配置事务管理 -->    
    	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-   		<propety name="sessionFactory" ref="sessionFactory"/>
+   		<property name="sessionFactory" ref="sessionFactory"/>
    	</bean>
    	<!-- 通知 -->
    	<tx:advice id="advice" transaction-manager="transactionManager">

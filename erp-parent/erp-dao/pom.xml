@@ -7,4 +7,13 @@
   </parent>
   <artifactId>erp-dao</artifactId>
   <description>Dao模块</description>
+  
+  <!-- 添加entity依赖 -->
+  <dependencies>
+  	<dependency>
+  		<groupId>com.itheima.erp</groupId>
+    	<artifactId>erp-entity</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>

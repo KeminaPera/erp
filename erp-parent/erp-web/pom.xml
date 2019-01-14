@@ -8,4 +8,13 @@
   <artifactId>erp-web</artifactId>
   <packaging>war</packaging>
   
+  <!-- 添加业务层依赖 -->
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>com.itheima.erp</groupId>
+  		<artifactId>erp-biz</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>
