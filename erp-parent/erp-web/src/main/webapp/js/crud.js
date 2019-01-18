@@ -14,7 +14,10 @@ $(function() {
 			iconCls: 'icon-add',
 			handler: function(){
 				method = "add";
-				$("#editWindow").dialog({'closed' : false});
+				$("#editWindow").dialog({
+					'closed' : false,
+					'title' : '添加' + name
+					});
 				$('#editForm').form('clear');
 			}
 		}],
@@ -22,7 +25,6 @@ $(function() {
 	});
 	//添加和修改窗口
 	$('#editWindow').dialog({    
-	    title: editWindowTitle,    
 	    width: 400,    
 	    height: 200,    
 	    closed: true,    
@@ -30,6 +32,9 @@ $(function() {
 	});
 	//添加或修改
 	$("#editBtn").bind('click',function(){
+		if(!$('#editForm').form('validate')){
+			return ;
+		};
 		var formData = $("#editForm").serializeJSON();
 		$.ajax({
 			url : actionName+'_' + method,
@@ -72,7 +77,10 @@ function del(uuid){
 //打开编辑窗口并将数据回显
 function edit(uuid){
 	method = "update";
-	$('#editWindow').window('open');
+	$('#editWindow').window({
+		'closed' : false,
+		'title' : '修改' + name
+	});
 	$('#editForm').form('clear');
 	$('#editForm').form('load',actionName+'_findById?uuid=' + uuid);
 }

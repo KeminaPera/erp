@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <title>部门列表</title>
 
-<link rel="stylesheet" type="text/css"
-	href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
 <script type="text/javascript" src="ui/jquery.min.js"></script>
 <script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
@@ -14,6 +13,7 @@
 <script type="text/javascript" src="js/crud.js"></script>
 <script type="text/javascript">
 	var actionName = 'depAction';
+	var name = '部门';
 	var columns = [ {
 		field : 'uuid',
 		title : '部门编号',
@@ -36,7 +36,6 @@
 		}
 
 	} ];
-	var editWindowTitle = '编辑部门';
 </script>
 </head>
 <body>
@@ -47,9 +46,9 @@
 		    	<table>
 		    		<tr>
 		    			<td>名称:</td>
-		    			<td><input class="easyui-textbox" type="text" name="t.name" data-options="required:true"></input></td>
+		    			<td><input class="easyui-textbox" type="text" name="t1.name" data-options="required:true"></input></td>
 		    			<td>联系电话:</td>
-		    			<td><input class="easyui-textbox" type="text" name="t.tele" data-options="required:true"></input></td>
+		    			<td><input class="easyui-textbox" type="text" name="t1.tele" data-options="required:true"></input></td>
 		    			<td>
 		    				<button id="searchBtn" type="button">查询</button>
 		    				<button id="clearBtn" type="button" onclick="clearForm('searchForm')">清空</button>
@@ -67,19 +66,19 @@
 			<form id="editForm" method="post">
 		    	<table>
 		    		<tr>
-		    			<td><input class="easyui-textbox" hidden="true" type="text" name="t.uuid" data-options="required:true"></input></td>
+		    			<td><input class="easyui-textbox" hidden="true" type="text" name="t1.uuid" data-options="required:true"></input></td>
 		    		</tr>
 		    		<tr>
 		    			<td>部门名称:</td>
-		    			<td><input class="easyui-textbox" type="text" name="t.name" data-options="required:true"></input></td>
+		    			<td><input class="easyui-textbox" type="text" name="t1.name" data-options="required:true"></input></td>
 		    		</tr>
 		    		<tr>
 		    			<td>部门联系电话:</td>
-		    			<td><input class="easyui-textbox" type="text" name="t.tele" data-options="required:true"></input></td>
+		    			<td><input class="easyui-textbox" type="text" name="t1.tele" data-options="required:true"></input></td>
 		    		</tr>
 		    		<tr>
 		    			<td>
-		    				<button id="editBtn" type="button" class="easyui-linkbutton" >编辑</button>
+		    				<button id="editBtn" type="button" class="easyui-linkbutton" >提交</button>
 		    				<button id="clearBtn" type="button" class="easyui-linkbutton" onclick="clearForm('editForm')">重置</button>
 		    			</td>
 		    		</tr>

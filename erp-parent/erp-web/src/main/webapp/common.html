@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>公共的HTML页面</title>
+</head>
+<body>
+<!-- 查询导航 -->
+<div class="easyui-panel" style="padding-left:4px; height:40px">
+	<form id="searchForm">
+		
+		<!-- 插入需要查询的字段 -->
+	    <button type="button" id="searchBtn">查询</button>
+	    <button type="button" onclick="clearForm('searchForm')" >清空</button>
+	</form>
+</div>
+
+<!-- 数据表格 -->
+<div>
+	<table id="dg"></table>  
+</div>
+
+<!-- 编辑窗口 -->
+<div id="editWindow">
+	<form id="editForm">
+		<table>
+			<tr>
+				<!-- 插入添加修改的字段 -->
+				<td>名称</td>
+				<td><input type="text" name="t1.name" class="easyui-validatebox" data-options="required:true"/></td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="right">
+					<button type="button" id="editBtn">提交</button>
+					<button type="button" id="clearBtn" onclick="clearForm('#editForm')">清空</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>  
+</body>
+</html>

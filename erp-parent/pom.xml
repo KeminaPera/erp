@@ -11,6 +11,7 @@
   	<spring.version>4.2.4.RELEASE</spring.version>
   	<struts.version>2.3.24</struts.version>
   	<hibernate.version>5.0.7.Final</hibernate.version>
+  	<shiro.version>1.4.0</shiro.version>
   </properties>
   <build>
   	<plugins>
@@ -142,5 +143,30 @@
 		<version>2.5</version>
 		<scope>provided</scope>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-core</artifactId>
+	    <version>${shiro.version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-web -->
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-web</artifactId>
+	    <version>${shiro.version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring -->
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-spring</artifactId>
+	    <version>${shiro.version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-aspectj -->
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-aspectj</artifactId>
+	    <version>${shiro.version}</version>
+	</dependency>
+	
   </dependencies>
 </project>

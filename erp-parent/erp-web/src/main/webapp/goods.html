@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>商品管理</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/crud.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript">
+var actionName = "goodsAction";
+var name="商品";
+var columns=[    
+    {field:'uuid',title:'编号',width:100},    
+    {field:'name',title:'名称',width:100},    
+    {field:'origin',title:'产地',width:100},
+    {field:'producer',title:'厂家',width:100},
+    {field:'unit',title:'计量单位',width:100},
+    {field:'inprice',title:'进货价格',width:100},
+    {field:'outprice',title:'销售价格',width:100},
+    {field:'goodsType',title:'商品类型',width:100,formatter:function(value,row,index){
+    	if(value != null){
+    		return value.name;
+    	}
+    }},
+    {field:'-',title:'操作',width:100,formatter : function(value, row, index){
+    		return '<a href="javascript:void(0)" onclick="del('+row.uuid+')">删除</a> | ' +
+    				'<a href="javascript:void(0)" onclick="edit('+row.uuid+')">修改</a>'
+    	}
+    }
+];
+</script>
+</head>
+<body>
+<!-- 查询导航 -->
+<div class="easyui-panel" style="padding-left:4px; height:40px">
+	<form id="searchForm">
+		名称：<input name="t1.name">
+		产地：<input name="t1.origin">
+		厂家：<input name="t1.producer">
+		计量单位：<input name="t1.unit" style="width: 50px">
+		进货价格：<input name="t1.inprice" style="width: 50px" class="easyui-numberbox" data-options="precision:2,min:0.0,prefix:'￥'">
+				至<input name="t2.inprice" style="width: 50px" class="easyui-numberbox" data-options="precision:2,min:0.0,prefix:'￥'">
+		销售价格：<input name="t1.outprice" style="width: 50px" class="easyui-numberbox" data-options="precision:2,min:0.0,prefix:'￥'">
+				至<input name="t2.outprice" style="width: 50px" class="easyui-numberbox" data-options="precision:2,min:0.0,prefix:'￥'">
+		商品类型：<input name="t1.goodsType.uuid" style="width: 100px" class="easyui-combobox"
+				data-options="url:'goodsTypeAction_findAll',valueField:'uuid',textField:'name'">
+	
+	    <button type="button" id="searchBtn">查询</button>
+	    <button type="button" onclick="clearForm('searchForm')">清空</button>
+	</form>
+</div>
+<!-- 数据表格 -->
+<div>
+	<table id="dg"></table>  
+</div>
+<!-- 编辑窗口 -->
+<div id="editWindow">
+	<form id="editForm">
+		<table>
+			<tr>
+				<td>名称</td>
+				<td><input type="text" name="t1.name" class="easyui-validatebox" data-options="required:true"/></td>
+			</tr>
+			<tr>
+				<td>产地</td>
+				<td><input type="text" name="t1.origin" class="easyui-validatebox" data-options="required:true"/></td>
+			</tr>
+			<tr>
+				<td>厂家</td>
+				<td><input type="text" name="t1.producer" class="easyui-validatebox" data-options="required:true"/></td>
+			</tr>
+			<tr>
+				<td>计量单位</td>
+				<td><input type="text" name="t1.unit"/></td>
+			</tr>
+			<tr>
+				<td>进货价格</td>
+				<td><input type="text" name="t1.inprice" class="easyui-numberbox" data-options="precision:2,min:0.0,prefix:'￥'"/></td>
+			</tr>
+			<tr>
+				<td>销售价格</td>
+				<td><input type="text" name="t1.outprice" class="easyui-numberbox" data-options="precision:2,min:0.0,prefix:'￥'"/></td>
+			</tr>
+			<tr>
+				<td>商品类型</td>
+				<td><input type="text" name="t1.goodsType.uuid" editable="false" class="easyui-combobox" data-options="valueField:'uuid',textField:'name',url:'goodsTypeAction_findAll'"/></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+					<button type="button" id="editBtn">提交</button>
+					<button type="button" id="clearBtn" onclick="clearForm('#editForm')">清空</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>  
+</body>
+</html>

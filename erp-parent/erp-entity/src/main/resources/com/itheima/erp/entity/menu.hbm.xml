@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.itheima.erp.entity.Menu" table="menu">
+		<id name="menuid" column="menuid">
+			<!-- <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+				<param name="sequence_name"></param>
+			</generator> -->
+		</id>
+		
+		<property name="menuname" column="menuname"/>
+		<property name="icon" column="icon"/>
+		<property name="url" column="url"/>
+		
+		<bag name="menus" order-by="menuid">
+			<key column="pid"></key>
+			<one-to-many class="com.itheima.erp.entity.Menu"/>
+		</bag>
+	</class>
+</hibernate-mapping>

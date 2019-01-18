@@ -12,7 +12,7 @@ public interface IBaseBiz<T> {
 
 	List<T> findAll();
 
-	PageModel<T> findByPage(T t, Integer currPage, Integer pageSize);	
+	PageModel<T> findByPage(T t1, T t2, Integer currPage, Integer pageSize);	
 	
 	void add(T t);
 

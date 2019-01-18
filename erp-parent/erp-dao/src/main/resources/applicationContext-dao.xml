@@ -13,4 +13,18 @@
    <bean id="depDao" class="com.itheima.erp.dao.impl.DepDao">
    	<property name="sessionFactory" ref="sessionFactory"/>
    </bean>
+   <bean id="empDao" class="com.itheima.erp.dao.impl.EmpDao">
+   	<property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <bean id="goodsDao" class="com.itheima.erp.dao.impl.GoodsDao">
+   	<property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+   <!-- 商品类别 -->
+   <bean id="goodsTypeDao" class="com.itheima.erp.dao.impl.GoodsTypeDao">
+   	<property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <!-- 菜单 -->
+   <bean id="menuDao" class="com.itheima.erp.dao.impl.MenuDao">
+   	<property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
 </beans>

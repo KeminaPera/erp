@@ -5,5 +5,10 @@
 <struts>
 	<package name="erp" extends="struts-default" namespace="/">
 		<action name="depAction_*" class="depAction" method="{1}"></action>
+		<action name="empAction_*" class="empAction" method="{1}"></action>
+		<action name="goodsAction_*" class="goodsAction" method="{1}"></action>
+		<action name="goodsTypeAction_*" class="goodsTypeAction" method="{1}"></action>
+		<action name="loginAction_*" class="loginAction" method="{1}"></action>
+		<action name="menuAction_*" class="menuAction" method="{1}"></action>
 	</package>
 </struts>

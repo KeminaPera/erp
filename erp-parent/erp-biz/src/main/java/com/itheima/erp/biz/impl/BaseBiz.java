@@ -27,12 +27,12 @@ public class BaseBiz<T> implements IBaseBiz<T> {
 	/**
 	 * service层按一定条件查询并以分页形式返回
 	 */
-	public PageModel<T> findByPage(T t, Integer currPage, Integer pageSize) {
+	public PageModel<T> findByPage(T t1, T t2, Integer currPage, Integer pageSize) {
 		PageModel<T> pageModel = new PageModel<>();
 		pageModel.setCurrPage(currPage);
 		pageModel.setPageSize(pageSize);
 		//调用dao层查询总记录数
-		Integer totalRecordCount = baseDao.getTotalRecordCount(t);
+		Integer totalRecordCount = baseDao.getTotalRecordCount(t1, t2);
 		pageModel.setTotalRecordCount(totalRecordCount);
 		//计算总的页面数
 		if(totalRecordCount != null) {
@@ -43,7 +43,7 @@ public class BaseBiz<T> implements IBaseBiz<T> {
 		//计算开始位置
 		int begin = (currPage - 1)*pageSize;
 		//查询该页面的数据
-		List<T> list = baseDao.findByPage(t, begin, pageSize);
+		List<T> list = baseDao.findByPage(t1, t2, begin, pageSize);
 		pageModel.setList(list);
 		return pageModel;
 	}

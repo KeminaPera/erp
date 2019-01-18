@@ -13,4 +13,21 @@
    <bean id="depAction" class="com.itheima.erp.web.action.DepAction" scope="prototype">
    	<property name="depBiz" ref="depBiz" />
    </bean>
+   <bean id="empAction" class="com.itheima.erp.web.action.EmpAction" scope="prototype">
+   	<property name="empBiz" ref="empBiz"/>
+   </bean>
+   <bean id="goodsAction" class="com.itheima.erp.web.action.GoodsAction" scope="prototype">
+   	<property name="goodsBiz" ref="goodsBiz"></property>
+   </bean>
+   <bean id="goodsTypeAction" class="com.itheima.erp.web.action.GoodsTypeAction">
+   	<property name="goodsTypeBiz" ref="goodsTypeBiz"/>
+   </bean>
+   <!-- 用户登录/退出 -->
+   <bean id="loginAction" class="com.itheima.erp.web.action.LoginAction" scope="prototype">
+   	<property name="empBiz" ref="empBiz"/>
+   </bean>
+   <!-- 菜单 -->
+   <bean id="menuAction" class="com.itheima.erp.web.action.MenuAction" scope="prototype">
+   	<property name="menuBiz" ref="menuBiz"/>
+   </bean>
 </beans>

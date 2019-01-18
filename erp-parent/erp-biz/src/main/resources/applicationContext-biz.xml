@@ -13,4 +13,17 @@
    <bean id="depBiz" class="com.itheima.erp.biz.impl.DepBiz">
    	<property name="depDao" ref="depDao"/>
    </bean>
+   <bean id="empBiz" class="com.itheima.erp.biz.impl.EmpBiz">
+   	<property name="empDao" ref="empDao"/>
+   </bean>
+   <bean id="goodsBiz" class="com.itheima.erp.biz.impl.GoodsBiz">
+   	<property name="goodsDao" ref="goodsDao"></property>
+   </bean>
+   <bean id="goodsTypeBiz" class="com.itheima.erp.biz.impl.GoodsTypeBiz">
+   	<property name="goodsTypeDao" ref="goodsTypeDao"/>
+   </bean>
+   <!-- 菜单 -->
+   <bean id="menuBiz" class="com.itheima.erp.biz.impl.MenuBiz">
+   	<property name="menuDao" ref="menuDao"/>
+   </bean>
 </beans>

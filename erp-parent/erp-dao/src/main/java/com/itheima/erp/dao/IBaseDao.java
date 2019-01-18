@@ -6,9 +6,9 @@ public interface IBaseDao<T> {
 
 	List<T> findAll();
 
-	Integer getTotalRecordCount(T t);
+	Integer getTotalRecordCount(T t1, T t2);
 
-	List<T> findByPage(T t, int begin, Integer pageSize);
+	List<T> findByPage(T t1, T t2, int begin, Integer pageSize);
 	
 	void save(T t);
 
