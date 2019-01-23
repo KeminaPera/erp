@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.itheima.erp.entity.StoreDetail" table="storedetail">
+	<id name="uuid" column="uuid">
+		<generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+			<param name="sequence_name">storedetail_seq</param>
+		</generator>
+	</id>
+	<property name="storeuuid" column="storeuuid"/>
+	<property name="goodsuuid" column="goodsuuid"/>
+	<property name="num" column="num"/>
+</class>
+</hibernate-mapping>

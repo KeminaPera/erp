@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>公共的HTML页面</title>
+<title>商品类型管理</title>
 <link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
 <script type="text/javascript" src="ui/jquery.min.js"></script>
@@ -10,13 +10,25 @@
 <script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
 <script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="js/crud.js"></script>
+<script type="text/javascript">
+var actionName = "goodsTypeAction";
+var name="商品类型";
+var columns=[    
+    {field:'uuid',title:'商品类型编号',width:100},    
+    {field:'name',title:'商品类型名称',width:100},    
+    {field:'-',title:'操作',width:100,formatter:function(value, row, index){
+    		return '<a href="javascript:void(0)" onclick="del('+row.uuid+')">删除</a> | ' +
+    				'<a href="javascript:void(0)" onclick="edit('+row.uuid+')">修改</a>';
+    	}
+    }    
+];
+</script>
 </head>
 <body>
 <!-- 查询导航 -->
 <div class="easyui-panel" style="padding-left:4px; height:40px">
 	<form id="searchForm">
-		
-		<!-- 插入需要查询的字段 -->
+		商品类型名称:<input type="text" name="t1.name"/>
 	    <button type="button" id="searchBtn">查询</button>
 	    <button type="button" onclick="clearForm('searchForm')" >清空</button>
 	</form>
@@ -32,9 +44,11 @@
 	<form id="editForm">
 		<table>
 			<tr>
-				<!-- 插入添加修改的字段 -->
-				<td>名称</td>
-				<td><input type="text" name="t1.name" class="easyui-validatebox" data-options="required:true"/></td>
+				<td>商品类型名称</td>
+				<td>
+					<input type="text" name="t1.name" class="easyui-validatebox" data-options="required:true"/>
+					<input type="hidden" name="t1.uuid"/>
+				</td>
 			</tr>
 			
 			<tr>

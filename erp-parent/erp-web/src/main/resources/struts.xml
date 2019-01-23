@@ -10,5 +10,11 @@
 		<action name="goodsTypeAction_*" class="goodsTypeAction" method="{1}"></action>
 		<action name="loginAction_*" class="loginAction" method="{1}"></action>
 		<action name="menuAction_*" class="menuAction" method="{1}"></action>
+		<action name="supplierAction_*" class="supplierAction" method="{1}"></action>
+		<action name="ordersAction_*" class="ordersAction" method="{1}"></action>
+		<action name="orderDetailAction_*" class="orderDetailAction" method="{1}"></action>
+		<action name="storeAction_*" class="storeAction" method="{1}"></action>
+		<action name="storeDetailAction_*" class="storeDetailAction" method="{1}"></action>
+		<action name="storeOperAction_*" class="storeOperAction" method="{1}"></action>
 	</package>
 </struts>

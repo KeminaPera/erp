@@ -29,11 +29,20 @@ public class BaseBiz<T> implements IBaseBiz<T> {
 	 */
 	public PageModel<T> findByPage(T t1, T t2, Integer currPage, Integer pageSize) {
 		PageModel<T> pageModel = new PageModel<>();
+		if(currPage == null) {
+			currPage = 1;
+		}
 		pageModel.setCurrPage(currPage);
-		pageModel.setPageSize(pageSize);
 		//调用dao层查询总记录数
 		Integer totalRecordCount = baseDao.getTotalRecordCount(t1, t2);
+		if(totalRecordCount == null) {
+			totalRecordCount = 0;
+		}
 		pageModel.setTotalRecordCount(totalRecordCount);
+		if(pageSize == null) {
+			pageSize = totalRecordCount;
+		}
+		pageModel.setPageSize(pageSize);
 		//计算总的页面数
 		if(totalRecordCount != null) {
 			Double temp = totalRecordCount.doubleValue();

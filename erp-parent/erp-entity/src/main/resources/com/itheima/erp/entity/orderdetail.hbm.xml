@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.itheima.erp.entity.OrderDetail" table="orderdetail">
+		<id name="uuid" column="uuid">
+			<generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+				<param name="sequence_name">orderdetail_seq</param>
+			</generator>
+		</id>
+		
+		<property name="goodsuuid" column="goodsuuid"/>
+		<property name="goodsname" column="goodsname"/>
+		<property name="price" column="price"/>
+		<property name="num" column="num"/>
+		<property name="money" column="money"/>
+		<property name="endtime" column="endtime"/>
+		<property name="ender" column="ender"/>
+		<property name="storeuuid" column="storeuuid"/>
+		<property name="state" column="state"/>
+		
+		<many-to-one name="orders" class="com.itheima.erp.entity.Orders" column="ordersuuid"/>
+	</class>
+</hibernate-mapping>

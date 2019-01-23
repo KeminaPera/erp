@@ -1,8 +1,14 @@
 var method = "";
+if(name == 'undefined'){
+	name = "";
+}
+if(typeof(param) == 'undefined'){
+	param = "";
+}
 $(function() {
 	//数据表格
 	$('#dg').datagrid({
-		url : actionName+'_findByPage',
+		url : actionName+'_findByPage' + param,
 		singleSelect : true,
 		pagination : true,
 		striped : true,
@@ -37,7 +43,7 @@ $(function() {
 		};
 		var formData = $("#editForm").serializeJSON();
 		$.ajax({
-			url : actionName+'_' + method,
+			url : actionName+'_'+ method + param,
 			data : formData,
 			dataType : 'json',
 			type : 'post',

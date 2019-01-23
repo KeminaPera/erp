@@ -27,4 +27,28 @@
    <bean id="menuDao" class="com.itheima.erp.dao.impl.MenuDao">
    	<property name="sessionFactory" ref="sessionFactory"/>
    </bean>
+   <!-- 供应商/客户 -->
+   <bean id="supplierDao" class="com.itheima.erp.dao.impl.SupplierDao">
+   	<property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <!-- 订单 -->
+   <bean id="ordersDao" class="com.itheima.erp.dao.impl.OrdersDao">
+   	<property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <!-- 订单明细 -->
+   <bean id="orderDetailDao" class="com.itheima.erp.dao.impl.OrderDetailDao">
+   	<property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <!-- 仓库 -->
+   <bean id="storeDao" class="com.itheima.erp.dao.impl.StoreDao">
+   	<property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <!-- 仓库库存 -->
+   <bean id="storeDetailDao" class="com.itheima.erp.dao.impl.StoreDetailDao">
+   	<property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <!-- 仓库变更 -->
+   <bean id="storeOperDao" class="com.itheima.erp.dao.impl.StoreOperDao">
+   	<property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
 </beans>

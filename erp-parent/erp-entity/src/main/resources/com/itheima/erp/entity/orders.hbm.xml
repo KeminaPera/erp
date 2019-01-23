@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.itheima.erp.entity.Orders" table="orders">
+		<id name="uuid" column="uuid">
+			<generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+				<param name="sequence_name">orders_seq</param>
+			</generator>
+		</id>
+		
+		<property name="createtime" column="createtime"/>
+		<property name="checktime" column="checktime"/>
+		<property name="starttime" column="starttime"/>
+		<property name="endtime" column="endtime"/>
+		<property name="type" column="type"/>
+		<property name="creater" column="creater"/>
+		<property name="checker" column="checker"/>
+		<property name="starter" column="starter"/>
+		<property name="ender" column="ender"/>
+		<property name="totalmoney" column="totalmoney"/>
+		<property name="state" column="state"/>
+		<property name="waybillsn" column="waybillsn"/>
+		
+		<!-- 配置实体之间的关系 -->
+		<many-to-one name="supplier" class="com.itheima.erp.entity.Supplier" column="supplieruuid"/>
+		<!-- 配置与订单详情的关系 -->
+		<bag name="orderDetails" cascade="save-update" inverse="true">
+			<key column="ordersuuid"/>
+			<one-to-many class="com.itheima.erp.entity.OrderDetail"/>
+		</bag>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="css/table.css">
+<script type="text/javascript" src="ui/date.js"></script>
+<script type="text/javascript" src="ui/request.js"></script>
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/orders.js"></script>
+</head>
+<body>
+<div>
+	<!-- 数据表格 -->
+	<div>
+		<table id="dg"></table>
+	</div>
+	
+	<!-- 双击采购订单某行弹出的该订单明细窗口 -->
+	<div id="orderDetail" class="orderDetail" style="padding:2px">
+		<table class="hovertable">
+			<tr>
+				<td width="10%" class="bg">流水号</td>
+				<td width="15%" id="uuid"></td>
+				<td width="10%" class="bg">供应商</td>
+				<td width="15%" colspan="3" id="supplier"></td>
+				<td width="10%" class="bg">状态</td>
+				<td width="15%" id="state"></td>
+			</tr>
+			<tr>
+				<td width="10%" class="bg">下单人</td>
+				<td width="15%" id="creater"></td>
+				<td width="10%" class="bg">审核人</td>
+				<td width="15%" id="checker"></td>
+				<td width="10%" class="bg">确认人</td>
+				<td width="15%" id="starter"></td>
+				<td width="10%" class="bg">库管员</td>
+				<td width="15%" id="ender"></td>
+			</tr>
+			<tr>
+				<td width="10%" class="bg">下单日期</td>
+				<td width="15%" id="createtime"></td>
+				<td width="10%" class="bg">审核日期</td>
+				<td width="15%" id="checktime"></td>
+				<td width="10%" class="bg">确认日期</td>
+				<td width="15%" id="starttime"></td>
+				<td width="10%" class="bg">入库日期</td>
+				<td width="15%" id="endtime"></td>
+			</tr>
+		</table>
+		<table id="orderItemDetail" class="orderItemDetail"></table>
+	</div>
+	
+	<!-- 双击销售订单某行弹出的该订单明细窗口 -->
+	<div id="orderDetail2" class="orderDetail" style="padding:2px">
+		<table class="hovertable">
+			<tr>
+				<td width="10%" class="bg">流水号</td>
+				<td width="15%" id="uuid2"></td>
+				<td width="10%" class="bg">供应商</td>
+				<td width="15%" colspan="3" id="supplier2"></td>
+				<td width="10%" class="bg">状态</td>
+				<td width="15%" id="state2"></td>
+			</tr>
+			<tr>
+				<td width="10%" class="bg">下单人</td>
+				<td width="15%" id="creater2"></td>
+				<td width="10%" class="bg">下单日期</td>
+				<td width="15%" id="createtime2"></td>
+				<td width="10%" class="bg">库管员</td>
+				<td width="15%" id="ender2"></td>
+				<td width="10%" class="bg">出库日期</td>
+				<td width="15%" id="endtime2"></td>
+			</tr>
+		</table>
+		<table id="orderItemDetail2" class="orderItemDetail"></table>
+	</div>
+	
+	<!-- 确认订单入库窗口 -->
+	<div id="instore" style="padding:2px">
+		<form id="instoreform">
+			<table class="hovertable">
+				<tr>
+					<td class="bg">订单项编号</td>
+					<td><input id="orderDetailuuid" readonly="readonly" type="text" name="orderDetailuuid"/></td>
+				</tr>
+				<tr>
+					<td class="bg">商品编号</td>
+					<td><input id="goodsuuid" readonly="readonly" type="text" name="t1.goodsuuid"/></td>
+				</tr>
+				<tr>
+					<td class="bg">商品名称</td>
+					<td><input id="goodsname" readonly="readonly" type="text" name="t1.goodsname"/></td>
+				</tr>
+				<tr>
+					<td class="bg">数量</td>
+					<td><input id="num" readonly="readonly" type="text" name="t1.num"/></td>
+				</tr>
+				<tr>
+					<td class="bg">仓库</td>
+					<td><input id="cc" class="easyui-combobox" name="storeuuid"   
+	    				data-options="valueField:'uuid',textField:'name',url:'storeAction_findAll'" />  </td>
+				</tr>
+			</table>
+		</form>
+	</div> 
+	
+	<!-- 添加采购/销售订单窗口 -->
+	<div id="addOrderDlg">
+		<form id="addOrdeForm">
+			<span id="supplierOrCudtomer_name"></span><input name="t1.supplier.uuid" id="supplierOrCustomer" />
+		</form>
+		<table id="addOrdersItem"></table>  
+	</div> 
+</div>
+</body>
+</html>

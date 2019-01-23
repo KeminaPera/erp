@@ -30,4 +30,28 @@
    <bean id="menuAction" class="com.itheima.erp.web.action.MenuAction" scope="prototype">
    	<property name="menuBiz" ref="menuBiz"/>
    </bean>
+   <!-- 供应商/客户 -->
+   <bean id="supplierAction" class="com.itheima.erp.web.action.SupplierAction" scope="prototype">
+   	<property name="supplierBiz" ref="supplierBiz"/>
+   </bean>
+   <!-- 订单 -->
+   <bean id="ordersAction" class="com.itheima.erp.web.action.OrdersAction" scope="prototype">
+   	<property name="ordersBiz" ref="ordersBiz"/>
+   </bean>
+   <!-- 订单详情 -->
+   <bean id="orderDetailAction" class="com.itheima.erp.web.action.OrderDetailAction" scope="prototype">
+   	<property name="orderDetailBiz" ref="orderDetailBiz"/>
+   </bean>
+   <!-- 仓库 -->
+   <bean id="storeAction" class="com.itheima.erp.web.action.StoreAction" scope="prototype">
+   	<property name="storeBiz" ref="storeBiz"/>
+   </bean>
+   <!-- 仓库库存 -->
+   <bean id="storeDetailAction" class="com.itheima.erp.web.action.StoreDetailAction" scope="prototype">
+   	<property name="storeDetailBiz" ref="storeDetailBiz"/>
+   </bean>
+   <!-- 仓库变更 -->
+   <bean id="storeOperAction" class="com.itheima.erp.web.action.StoreOperAction" scope="prototype">
+   	<property name="storeOperBiz" ref="storeOperBiz"/>
+   </bean>
 </beans>

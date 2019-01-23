@@ -57,7 +57,11 @@ public class BaseAction<T> {
 	}
 	
 	//获取ID
-	private Long uuid;
+	public Long uuid;
+
+	public Long getUuid() {
+		return uuid;
+	}
 
 	public void setUuid(Long uuid) {
 		this.uuid = uuid;

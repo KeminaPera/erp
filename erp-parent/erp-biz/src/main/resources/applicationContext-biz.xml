@@ -26,4 +26,31 @@
    <bean id="menuBiz" class="com.itheima.erp.biz.impl.MenuBiz">
    	<property name="menuDao" ref="menuDao"/>
    </bean>
+   <!-- 供应商/客户 -->
+   <bean id="supplierBiz" class="com.itheima.erp.biz.impl.SupplierBiz">
+   	<property name="supplierDao" ref="supplierDao"/>
+   </bean>
+   <!-- 订单 -->
+   <bean id="ordersBiz" class="com.itheima.erp.biz.impl.OrdersBiz">
+   	<property name="ordersDao" ref="ordersDao"/>
+   	<property name="empDao" ref="empDao"/>
+   </bean>
+   <!-- 订单明细 -->
+   <bean id="orderDetailBiz" class="com.itheima.erp.biz.impl.OrderDetailBiz">
+   	<property name="orderDetailDao" ref="orderDetailDao"/>
+   	<property name="storeDetailDao" ref="storeDetailDao"/>
+   	<property name="storeOperDao" ref="storeOperDao"/>
+   </bean>
+   <!-- 仓库 -->
+   <bean id="storeBiz" class="com.itheima.erp.biz.impl.StoreBiz">
+   	<property name="storeDao" ref="storeDao"/>
+   </bean>
+   <!-- 仓库库存 -->
+   <bean id="storeDetailBiz" class="com.itheima.erp.biz.impl.StoreDetailBiz">
+   	<property name="storeDetailDao" ref="storeDetailDao"/>
+   </bean>
+   <!-- 仓库变更 -->
+   <bean id="storeOperBiz" class="com.itheima.erp.biz.impl.StoreOperBiz">
+   	<property name="storeOperDao" ref="storeOperDao" />
+   </bean>
 </beans>

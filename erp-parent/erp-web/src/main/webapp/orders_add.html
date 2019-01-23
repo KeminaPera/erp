@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>采购申请</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/order_add.js"></script>
+</head>
+<body>
+<!-- 查询导航 -->
+<div class="easyui-panel" style="padding-left:4px; height:40px">
+<form id="ordersForm">
+	供应商:<input id="cc" type="text" editable="false" name="t1.supplier.uuid"/>
+</form>
+</div>
+
+<!-- 数据表格 -->
+<div>
+	<table id="dg"></table> 
+	总计：<span id="totalMoney">0</span>
+</div>
+</body>
+</html>
