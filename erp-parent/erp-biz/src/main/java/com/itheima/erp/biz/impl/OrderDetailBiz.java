@@ -51,6 +51,9 @@ public class OrderDetailBiz extends BaseBiz<OrderDetail> implements IOrderDetail
 		if(!orderDetail.getOrders().getState().equals(Orders.STATE_STATE)){
 			throw new ErpException("该订单还没有确定，请先确定！");
 		}
+		if(orderDetail.getState().equals(OrderDetail.STATE_IN)){
+			throw new ErpException("该订单项已经入库了，不能重复入库！");
+		}
 		//修改订单项状态位已入库
 		orderDetail.setState(OrderDetail.STATE_IN);
 		//设置ender
@@ -120,8 +123,8 @@ public class OrderDetailBiz extends BaseBiz<OrderDetail> implements IOrderDetail
 		/**修改orderDetail**/
 		//查询该订单项
 		OrderDetail orderDetail = orderDetailDao.findById(orderDetailuuid);
-		if(orderDetail.getOrders().getState().equals(Orders.STATE_OUT)){
-			throw new ErpException("该订单已出库，不能重复操作！");
+		if(orderDetail.getState().equals(OrderDetail.STATE_OUT)){
+			throw new ErpException("该订单项已出库，不能重复操作！");
 		}
 		//修改订单项状态位已出库
 		orderDetail.setState(OrderDetail.STATE_OUT);
@@ -176,7 +179,7 @@ public class OrderDetailBiz extends BaseBiz<OrderDetail> implements IOrderDetail
 		//判断boolean值
 		if(allOut) {
 			//如果为true，修改订单的状态为已出库
-			orderDetail.getOrders().setState(Orders.STATE_END);
+			orderDetail.getOrders().setState(Orders.STATE_OUT);
 			//设置库管员
 			orderDetail.getOrders().setEnder(empuuid);
 			//设置订单完成时间

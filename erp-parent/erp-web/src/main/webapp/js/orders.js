@@ -28,6 +28,8 @@ $(function(){
 			document.title = "销售订单查询";
 			param = "?t1.type=2";
 		}
+		//显示查询条件
+		showDiv();
 	}
 	if(oper == 'doCreate'){
 		var title;
@@ -39,17 +41,19 @@ $(function(){
 			addOrderDlg_title = '添加采购订单项';
 			supplierOrCustomer_type = 1;
 			addOrderType = 1;
-			$('#supplierOrCudtomer_name').html('供应商 ');
+			supplierOrCustomer_name = '供应商 ';
+			$('#supplierOrCudtomer_name').html(supplierOrCustomer_name);
 		}
 		if(type * 1 == 2){
 			//销售订单的创建
 			document.title = "销售订单录入";
-			param = "?t1.type=2&state=0";
+			param = "?t1.type=2&t1.state=0";
 			title = '添加销售订单';
 			addOrderDlg_title = '添加销售订单项';
 			supplierOrCustomer_type = 2;
 			addOrderType = 2;
-			$('#supplierOrCudtomer_name').html('客户 ');
+			supplierOrCustomer_name = '客户';
+			$('#supplierOrCudtomer_name').html(supplierOrCustomer_name);
 		}
 		$('#dg').datagrid({
 			toolbar: [{
@@ -232,8 +236,10 @@ $(function(){
 		singleSelect:true,
 		showFooter:true,
 		onClickRow:function(rowIndex, rowData){
-			$('#addOrdersItem').datagrid('endEdit',isEditingRowIndex);
-			isEditingRowIndex = rowIndex;
+			if(validateGrid()){
+				$('#addOrdersItem').datagrid('endEdit',isEditingRowIndex);
+				isEditingRowIndex = rowIndex;
+			}
 			$('#addOrdersItem').datagrid('beginEdit',isEditingRowIndex);
 			bindEvent();
 		},
@@ -241,17 +247,33 @@ $(function(){
 	    	text:'添加',
 			iconCls: 'icon-add',
 			handler: function(){
-				$('#addOrdersItem').datagrid('endEdit',isEditingRowIndex);
-				$('#addOrdersItem').datagrid('appendRow',{});
-				isEditingRowIndex = $('#addOrdersItem').datagrid('getRows').length - 1;
-				$('#addOrdersItem').datagrid('beginEdit',isEditingRowIndex);
-				bindEvent();
+				if(validateGrid()){
+					$('#addOrdersItem').datagrid('endEdit',isEditingRowIndex);
+					$('#addOrdersItem').datagrid('appendRow',{});
+					isEditingRowIndex = $('#addOrdersItem').datagrid('getRows').length - 1;
+					$('#addOrdersItem').datagrid('beginEdit',isEditingRowIndex);
+					bindEvent();
+				}
 			}
 		},'-',{
 	    	text:'提交',
 			iconCls: 'icon-save',
 			handler: function(){
-				//获取供应商或客户
+				//获取供应商或客户，如果为空不能提交
+				var value = $('#supplierOrCustomer').combobox('getValue');
+				if(value == ""){
+					$.messager.alert("提示",supplierOrCustomer_name + '不能为空！',"info");
+					return;
+				}
+				//判断数据表格是否有数据项，没有不能提交
+				if($('#addOrdersItem').datagrid('getRows').length * 1 == 0){
+					$.messager.alert("提示","请添加商品！","info");
+					return;
+				}
+				//isEditingRowIndex行数据是否合法
+				if(!validateGrid()){
+					return;
+				}
 				var formData = $('#addOrdeForm').serializeJSON();
 				//获取所有订单项
 				var gridData = JSON.stringify($('#addOrdersItem').datagrid('getRows'));
@@ -266,6 +288,12 @@ $(function(){
 							$.messager.alert("提示",rtn.message,"info",function(){
 								$('#addOrderDlg').dialog('close');
 								$('#dg').datagrid('reload');
+								//成功之后清空数据表格和表单
+								$('#addOrdersItem').datagrid('loadData',{ total: 0, rows: [] });
+								$('#addOrdeForm').form('clear');
+								$('#addOrdersItem').datagrid('reloadFooter',[
+									{num: '合计', money: 0.00},
+								]);
 							});
 						}else{
 							$.messager.alert("提示",rtn.message,"info");
@@ -280,15 +308,17 @@ $(function(){
 	        	url:'goodsAction_findAll',
 	        	valueField:'name',
 	        	textField:'name',
+	        	editable:false,
 	        	onSelect:function(record){
 	        		$(getEditor('goodsuuid').target).val(record.uuid);
 	        		$(getEditor('price').target).val(record.inprice);
+	        		$(getEditor('num').target).select();
 	        		cal();
 	        	}
 	        }}},    
 	        {field:'price',title:'价格',width:100,editor:{type:'numberbox',options:{value:0.00,min:0.00,precision:2}}},    
 	        {field:'num',title:'数量',width:100,editor:{type:'numberbox',options:{min:1}}},    
-	        {field:'money',title:'金额',width:100,editor:{type:'numberbox',options:{disabled:true}}},    
+	        {field:'money',title:'金额',width:100,editor:{type:'numberbox',options:{disabled:true,precision:2}}},    
 	        {field:'-',title:'操作',width:100,formatter:function(value, row, index){
 	        	if(row.num != '合计'){
 	        		return '<a href="javascript:void(0)" onclick="deleteRow('+index+')">删除</a>';
@@ -319,7 +349,7 @@ $(function(){
 	});
 	//订单项入库窗口
 	$('#instore').dialog({    
-	    title: inOrOutStore_title,    
+	    title: inOrOutStore_title, 
 	    width: 400,    
 	    height: 250,    
 	    closed: true,    
@@ -327,6 +357,12 @@ $(function(){
 	    buttons:[{
 			text:inOrOutStore_text,
 			handler:function(){
+				//检查是否选择了仓库
+				var storeData = $('#store').combobox('getValue'); 
+				if(storeData == ""){
+					$.messager.alert("提示","仓库不能为空！","info");
+					return;
+				}
 				$.messager.confirm("确认", inOrOutStore_message, function(yes){
 					if(yes){
 						var formData = $('#instoreform').serializeJSON();
@@ -337,11 +373,11 @@ $(function(){
 							data:formData,
 							success:function(rtn){
 								if(rtn.success){
+									//入库成功
 									$.messager.alert("提示",rtn.message,'info',function(){
 										//关闭入库窗口
 										$('#instore').dialog('close');
 										//刷新订单明细窗口
-										
 									});
 								}else{
 									$.messager.alert("提示",rtn.message,'info',function(){
@@ -352,12 +388,17 @@ $(function(){
 							}
 						});
 					}
+					//不管入库还是不入库都清空表单
+					$('#instoreform').form('clear');
 				});
 			}
 		},{
 			text:'取消',
 			handler:function(){
+				//关闭窗口
 				$('#instore').dialog('close');
+				//清空表单
+				$('#instoreform').form('clear');
 			}
 		}]
 	});  
@@ -379,6 +420,22 @@ $(function(){
 	$('#addOrdersItem').datagrid('reloadFooter',[
 		{num: '合计', money: 0},
 	]);
+	
+	/*//仓库
+	$('#_store').combogrid({    
+	    panelWidth:450,    
+	    value:'006',    
+	     
+	    idField:'uuid',    
+	    textField:'name',    
+	    url:'storeAction_findAll',    
+	    columns:[[    
+	        {field:'uuid',title:'仓库编号',width:60,hidden:true},    
+	        {field:'name',title:'仓库名称',width:100},    
+	        {field:'goodsname',title:'商品名称',width:120},    
+	        {field:'num',title:'数量',width:100}    
+	    ]]    
+	});  */
 
 });
 /**
@@ -429,11 +486,11 @@ function getState2(state){
 /**
  * 计算每个订单项的总金额
  */
-function cal(){
+/*function cal(){
 	var num = $('#goodsnum').val();
 	var price = $('#goodsprice').val();
 	$('#goodsmoney').val((price * num).toFixed(2));
-}
+}*/
 /**
  * 通过订单的类别获取数据表格columns的格式
  */
@@ -475,13 +532,16 @@ function getColumns(type){
  * 删除添加订单中不再需要的订单项
  */
 function deleteRow(index){
-	$.messager.confirm('提示','你确定要删除这行吗？',function(yes){
-		if(yes){
-			$('#addOrdersItem').datagrid('deleteRow', index);
-			//删除选定行之后，再获取所有行数据并重新排序
-			$('#addOrdersItem').datagrid('loadData',$('#addOrdersItem').datagrid('getRows'));
-		}
-	});
+	if(validateGrid()){
+		$.messager.confirm('提示','你确定要删除这行吗？',function(yes){
+			if(yes){
+				$('#addOrdersItem').datagrid('deleteRow', index);
+				//删除选定行之后，再获取所有行数据并重新排序
+				$('#addOrdersItem').datagrid('loadData',$('#addOrdersItem').datagrid('getRows'));
+				getTotalMoney();
+			}
+		});
+	}
 }
 /**
  * 过去某个字段的编辑器
@@ -525,7 +585,45 @@ function getTotalMoney(){
 		totalMoney += parseFloat(rows[i].money);
 	}
 	$('#addOrdersItem').datagrid('reloadFooter',[
-		{num: '合计', money: totalMoney},
+		{num: '合计', money: totalMoney.toFixed(2)},
 	]);
-
+}
+/**
+ * 校验添加订单项是否合法
+ * @returns false：不合法
+ */
+function validateGrid(){
+	if($('#addOrdersItem').datagrid('getRows').length != 0){
+		var rowData = $('#addOrdersItem').datagrid('getRows')[isEditingRowIndex];
+		if($.isEmptyObject(rowData)){
+			$.messager.alert("提示","请选择商品！","info");
+			return false;
+		}
+		if(rowData.goodsname == ""){
+			$.messager.alert("提示","商品名称不能为空！","info");
+			return false;
+		}
+		if(rowData.price == ""){
+			$.messager.alert("提示","价格不能为空！","info");
+			return false;
+		}
+		if(rowData.num == ""){
+			$.messager.alert("提示","数量不能为空！","info");
+			return false;
+		}
+	}
+	return true;
+}
+/**
+ * 订单查询的显示
+ */
+function showDiv(){
+	if(type * 1 == 1){
+		//是采购订单,显示采购的订单的查询
+		$('#searchDiv1').show();
+	}
+	if(type * 1 == 2){
+		//是销售订单,显示销售订单的查询
+		$('#searchDiv2').show();
+	}
 }

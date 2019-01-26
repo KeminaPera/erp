@@ -51,4 +51,8 @@
    <bean id="storeOperDao" class="com.itheima.erp.dao.impl.StoreOperDao">
    	<property name="sessionFactory" ref="sessionFactory"/>
    </bean>
+   <!-- 报表 -->
+   <bean id="reportDao" class="com.itheima.erp.dao.impl.ReportDao">
+   	<property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
 </beans>

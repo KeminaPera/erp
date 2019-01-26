@@ -3,8 +3,10 @@ package com.itheima.erp.dao.impl;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 import com.itheima.erp.dao.IStoreDetailDao;
+import com.itheima.erp.entity.StoreAlert;
 import com.itheima.erp.entity.StoreDetail;
 /**
  * Dao层仓库库存实现类
@@ -17,8 +19,17 @@ public class StoreDetailDao extends BaseDao<StoreDetail> implements IStoreDetail
 	/**
 	 * 添加条件
 	 */
-	public DetachedCriteria addCriteria(StoreDetail t1, StoreDetail t2) {
+	public DetachedCriteria addCriteria(StoreDetail storeDetail1, StoreDetail storeDetail2) {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(StoreDetail.class);
+		if(storeDetail1 != null) {
+			Long temp = null;
+			if((temp = storeDetail1.getStoreuuid()) != null) {
+				detachedCriteria.add(Restrictions.eq("storeuuid", temp));
+			}
+			if((temp = storeDetail1.getGoodsuuid()) != null) {
+				detachedCriteria.add(Restrictions.eq("goodsuuid", temp));
+			}
+		}
 		return detachedCriteria;
 	}
 
@@ -32,5 +43,15 @@ public class StoreDetailDao extends BaseDao<StoreDetail> implements IStoreDetail
 			return storeDetails.get(0);
 		}
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	/**
+	 * 获取库存警告列表
+	 */
+	public List<StoreAlert> getStoreAlertList() {
+		String hql = "from StoreAlert where storenum < outnum";
+		return (List<StoreAlert>) this.getHibernateTemplate().find(hql);
 	}
 }

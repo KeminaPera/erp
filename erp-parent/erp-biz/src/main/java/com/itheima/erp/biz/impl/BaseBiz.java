@@ -1,6 +1,10 @@
 package com.itheima.erp.biz.impl;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 import com.itheima.erp.biz.IBaseBiz;
 import com.itheima.erp.dao.IBaseDao;
@@ -92,5 +96,30 @@ public class BaseBiz<T> implements IBaseBiz<T> {
 	 */
 	public T findById(Long uuid) {
 		return baseDao.findById(uuid);
+	}
+
+	@Override
+	/**
+	 * 查询实体的名称
+	 */
+	public String getEntityNameFromMap(Map<Long, String> map, Long uuid, IBaseDao<?> _baseDao) throws Exception {
+		String name = map.get(uuid);
+		if(name == null) {
+			//获取传入进来Dao的字节码
+			Class<?> clazz = _baseDao.getClass();
+			Method method = clazz.getMethod("findById", Long.class);
+			Object object = method.invoke(_baseDao, uuid);
+			//获取实体类的字节码，再获取getName方法
+			Type genericSuperclass = clazz.getGenericSuperclass();
+			ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
+			Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+			Class<?> cla = (Class<?>) actualTypeArguments[0];
+			method = cla.getMethod("getName");
+			name = (String) method.invoke(object);
+			map.put(uuid, name);
+			return name;
+		}else {
+			return name;
+		}
 	}
 }

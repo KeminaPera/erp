@@ -16,6 +16,18 @@
 </head>
 <body>
 <div>
+	<!-- 采购订单查询 -->
+	<div id="searchDiv1" style="padding:2px;display:none">
+		生成日期：<input class="easyui-datebox" name="t1.createtime"/>至<input class="easyui-datebox" name="t2.createtime"/>
+		审核日期：<input class="easyui-datebox" name="t1.checktime"/>至<input class="easyui-datebox" name="t2.checktime"/>
+		确认日期：<input class="easyui-datebox" name="t1.starttime"/>至<input class="easyui-datebox" name="t2.starttime"/>
+		入库日期：<input class="easyui-datebox" name="t1.endtime"/>至<input class="easyui-datebox" name="t2.endtime"/>
+	</div>
+	<!-- 销售订单查询 -->
+	<div id="searchDiv2" style="padding:2px;display:none">
+		生成日期：<input class="easyui-datebox" name="t1.createtime"/>至<input class="easyui-datebox" name="t2.createtime"/>
+		出库日期：<input class="easyui-datebox" name="t1.endtime"/>至<input class="easyui-datebox" name="t2.endtime"/>
+	</div>
 	<!-- 数据表格 -->
 	<div>
 		<table id="dg"></table>
@@ -103,8 +115,10 @@
 				</tr>
 				<tr>
 					<td class="bg">仓库</td>
-					<td><input id="cc" class="easyui-combobox" name="storeuuid"   
-	    				data-options="valueField:'uuid',textField:'name',url:'storeAction_findAll'" />  </td>
+					<td><input id="store" class="easyui-combobox" name="storeuuid"   
+	    				data-options="valueField:'uuid',textField:'name',url:'storeAction_findAll',editable:false" />  
+	    				<!-- <input id="_store" name="dept" value="01" />   -->
+	    			</td>
 				</tr>
 			</table>
 		</form>

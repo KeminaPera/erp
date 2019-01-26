@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>仓库明细</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/storedetail.js"></script>
+<script type="text/javascript" src="ui/date.js"></script>
+</head>
+<body>
+<div>
+<div>
+	<form id="searchStoredetailForm">
+		仓库<input id="cc" class="easyui-combobox" name="t1.storeuuid"   
+    		data-options="valueField:'uuid',textField:'name',url:'storeAction_findAll'" />  
+		商品<input id="cc" class="easyui-combobox" name="t1.goodsuuid"   
+    		data-options="valueField:'uuid',textField:'name',url:'goodsAction_findAll'" />  
+    	<button id="searchBtn" type="button">查询</button>
+	</form>
+</div>
+<table id="dg"></table>
+</div>
+
+<div id="storeOperDlg">
+	<div>
+		仓库：<span id="_storename"></span> &nbsp;&nbsp; 商品：<span id="_goodsname"></span>
+	</div>
+	<div>
+		<table id="_dg"></table>
+	</div>
+</div>  
+</body>
+</html>

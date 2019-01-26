@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>销售报表</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="ui/highcharts.js"></script>
+<script type="text/javascript" src="ui/exporting.js"></script>
+<script type="text/javascript" src="js/report_pie.js"></script>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'center',title:'销售统计表'" style="padding:5px;">
+	<div style="padding:2px">
+		<form  id="searchForm">
+			开始日期:<input class="easyui-datebox" name="starttime"/>
+			截至日期:<input class="easyui-datebox" name="endtime"/>
+			<button id="reportBtn" type="button">统计</button>
+		</form>
+	</div>
+	<!-- 数据表格 -->
+	<table id="dg"></table>
+</div>
+<!-- 饼状图 -->
+<div data-options="region:'east',title:'销售统计图',split:true" style="width:800px;">
+	<div id="container" style="min-width:400px;height:400px"></div>
+</div>
+</body>
+</html>

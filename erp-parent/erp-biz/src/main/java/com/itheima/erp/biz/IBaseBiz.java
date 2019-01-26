@@ -1,7 +1,9 @@
 package com.itheima.erp.biz;
 
 import java.util.List;
+import java.util.Map;
 
+import com.itheima.erp.dao.IBaseDao;
 import com.itheima.erp.entity.PageModel;
 /**
  * service层通用接口
@@ -21,4 +23,6 @@ public interface IBaseBiz<T> {
 	void update(T t);
 
 	T findById(Long uuid);
+	
+	String getEntityNameFromMap(Map<Long, String> map, Long uuid, IBaseDao<?> baseDao) throws Exception;
 }

@@ -10,14 +10,17 @@ import java.util.Date;
 public class StoreOper {
 
 	/**入库操作**/
-	public static final String TYPE_IN = "0";
+	public static final String TYPE_IN = "1";
 	/**出库操作**/
-	public static final String TYPE_OUT = "1";
+	public static final String TYPE_OUT = "2";
 	private Long uuid;         //编号
 	private Long empuuid;      //操作员工编号
+	private String empname;    //操作员工姓名
 	private Date opertime;     //操作日期
 	private Long storeuuid;    //仓库编号
+	private String storename;  //仓库名称
 	private Long goodsuuid;    //商品编号
+	private String goodsname;  //商品名称
 	private Long num;          //数量
 	private String type;       //操作类型 1：入库 2：出库
 	public Long getUuid() {
@@ -61,6 +64,24 @@ public class StoreOper {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public String getEmpname() {
+		return empname;
+	}
+	public void setEmpname(String empname) {
+		this.empname = empname;
+	}
+	public String getStorename() {
+		return storename;
+	}
+	public void setStorename(String storename) {
+		this.storename = storename;
+	}
+	public String getGoodsname() {
+		return goodsname;
+	}
+	public void setGoodsname(String goodsname) {
+		this.goodsname = goodsname;
 	}
 	
 }

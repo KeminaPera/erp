@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>仓库变更记录查询</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/storeoper.js"></script>
+<script type="text/javascript" src="ui/date.js"></script>
+</head>
+<body>
+<div>
+	<div style="padding:2px">
+		<form id="searchStoreOperForm">
+			员工：<input editable="false" class="easyui-combobox" name="t1.empuuid" data-options="valueField:'uuid',textField:'name',url:'empAction_findAll'"/>
+			操作日期：<input editable="false" type="text" class="easyui-datebox" name="t1.opertime" /> 至 <input editable="false" type="text" class="easyui-datebox" name="t2.opertime"/>
+			仓库：<input editable="false" class="easyui-combobox" name="t1.storeuuid" data-options="valueField:'uuid',textField:'name',url:'storeAction_findAll'"/>
+			商品：<input editable="false" class="easyui-combobox" name="t1.goodsuuid" data-options="valueField:'uuid',textField:'name',url:'goodsAction_findAll'"/>
+			类型：    <select editable="false" id="cc" class="easyui-combobox" name="t1.type">   
+					    <option value="">全部</option>   
+					    <option value="2">出库</option>   
+					    <option value="1">入库</option>   
+					</select>  
+			<button id="searchBtn" type="button">查询</button>
+		</form>
+	</div>
+	<div>
+		<table id="dg"></table>
+	</div>
+</div>
+</body>
+</html>

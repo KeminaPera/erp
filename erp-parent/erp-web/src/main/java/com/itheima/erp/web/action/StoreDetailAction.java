@@ -1,6 +1,9 @@
 package com.itheima.erp.web.action;
 
+import java.util.List;
+
 import com.itheima.erp.biz.IStoreDetailBiz;
+import com.itheima.erp.entity.StoreAlert;
 import com.itheima.erp.entity.StoreDetail;
 
 /**
@@ -17,4 +20,11 @@ public class StoreDetailAction extends BaseAction<StoreDetail> {
 		super.setBaseBiz(this.storeDetailBiz);
 	}
 	
+	/**
+	 * 获取库存警告列表
+	 */
+	public void getStoreAlertList() {
+		List<StoreAlert> storeAlertList = storeDetailBiz.getStoreAlertList();
+		parseObjectAndWrite(storeAlertList);
+	}
 }

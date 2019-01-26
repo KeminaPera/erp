@@ -8,7 +8,9 @@ public class StoreDetail {
 
 	private Long uuid;         //编号
 	private Long storeuuid;    //仓库编号
+	private String storename;  //仓库名称
 	private Long goodsuuid;    //商品编号
+	private String goodsname;  //商品名称
 	private Long num;          //数量
 	public Long getUuid() {
 		return uuid;
@@ -34,4 +36,17 @@ public class StoreDetail {
 	public void setNum(Long num) {
 		this.num = num;
 	}
+	public String getStorename() {
+		return storename;
+	}
+	public void setStorename(String storename) {
+		this.storename = storename;
+	}
+	public String getGoodsname() {
+		return goodsname;
+	}
+	public void setGoodsname(String goodsname) {
+		this.goodsname = goodsname;
+	}
+	
 }

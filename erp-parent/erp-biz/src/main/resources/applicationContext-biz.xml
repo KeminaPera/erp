@@ -48,9 +48,18 @@
    <!-- 仓库库存 -->
    <bean id="storeDetailBiz" class="com.itheima.erp.biz.impl.StoreDetailBiz">
    	<property name="storeDetailDao" ref="storeDetailDao"/>
+   	<property name="goodsDao" ref="goodsDao"></property>
+   	<property name="storeDao" ref="storeDao"/>
    </bean>
    <!-- 仓库变更 -->
    <bean id="storeOperBiz" class="com.itheima.erp.biz.impl.StoreOperBiz">
    	<property name="storeOperDao" ref="storeOperDao" />
+   	<property name="goodsDao" ref="goodsDao"></property>
+   	<property name="storeDao" ref="storeDao"/>
+   	<property name="empDao" ref="empDao"/>
+   </bean>
+   <!-- 报表 -->
+   <bean id="reportBiz" class="com.itheima.erp.biz.impl.ReportBiz">
+   	<property name="reportDao" ref="reportDao"/>
    </bean>
 </beans>

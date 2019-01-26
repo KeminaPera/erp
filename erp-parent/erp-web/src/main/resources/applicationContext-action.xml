@@ -54,4 +54,8 @@
    <bean id="storeOperAction" class="com.itheima.erp.web.action.StoreOperAction" scope="prototype">
    	<property name="storeOperBiz" ref="storeOperBiz"/>
    </bean>
+   <!-- 报表 -->
+   <bean id="reportAction" class="com.itheima.erp.web.action.ReportAction" scope="prototype">
+   	<property name="reportBiz" ref="reportBiz"/>
+   </bean>
 </beans>

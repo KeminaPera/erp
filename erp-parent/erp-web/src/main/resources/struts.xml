@@ -16,5 +16,6 @@
 		<action name="storeAction_*" class="storeAction" method="{1}"></action>
 		<action name="storeDetailAction_*" class="storeDetailAction" method="{1}"></action>
 		<action name="storeOperAction_*" class="storeOperAction" method="{1}"></action>
+		<action name="reportAction_*" class="reportAction" method="{1}"></action>
 	</package>
 </struts>

@@ -1,5 +1,6 @@
 package com.itheima.erp.web.action;
 
+import com.itheima.erp.biz.IStoreOperBiz;
 import com.itheima.erp.entity.StoreOper;
 
 /**
@@ -8,5 +9,13 @@ import com.itheima.erp.entity.StoreOper;
  *
  */
 public class StoreOperAction extends BaseAction<StoreOper> {
+	
+	//注入IStoreOperBiz
+	private IStoreOperBiz storeOperBiz;
 
+	public void setStoreOperBiz(IStoreOperBiz storeOperBiz) {
+		this.storeOperBiz = storeOperBiz;
+		super.setBaseBiz(this.storeOperBiz);
+	}
+		
 }
