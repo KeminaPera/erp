@@ -22,6 +22,12 @@ public class GoodsTypeDao extends BaseDao<GoodsType> implements IGoodsTypeDao {
 				detachedCriteria.add(Restrictions.like("name", temp, MatchMode.ANYWHERE));
 			}
 		}
+		if(goodsType2 != null) {
+			String temp = null;
+			if((temp = goodsType2.getName()) != null && temp.trim().length() > 0) {
+				detachedCriteria.add(Restrictions.eq("name", temp));
+			}
+		}
 		return detachedCriteria;
 	}
 

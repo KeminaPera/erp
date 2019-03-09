@@ -90,7 +90,7 @@ public class BaseAction<T> {
 	 */
 	public void findAll() {
 			//调用业务层
-			List<T> list = baseBiz.findAll();
+			List<T> list = baseBiz.findAll(getT1(), getT2());
 			parseObjectAndWrite(list);
 	}
 	

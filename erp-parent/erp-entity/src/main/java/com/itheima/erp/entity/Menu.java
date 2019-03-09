@@ -46,5 +46,10 @@ public class Menu {
 	public void setMenus(List<Menu> menus) {
 		this.menus = menus;
 	}
+	@Override
+	public String toString() {
+		return "Menu [menuid=" + menuid + ", menuname=" + menuname + ", icon=" + icon + ", url=" + url + ", menus="
+				+ menus + "]";
+	}
 	
 }

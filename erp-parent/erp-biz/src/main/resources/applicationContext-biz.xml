@@ -10,15 +10,21 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
         
+   <!-- 部门 -->
    <bean id="depBiz" class="com.itheima.erp.biz.impl.DepBiz">
    	<property name="depDao" ref="depDao"/>
    </bean>
+   <!-- 员工 -->
    <bean id="empBiz" class="com.itheima.erp.biz.impl.EmpBiz">
    	<property name="empDao" ref="empDao"/>
+   	<property name="roleDao" ref="roleDao"/>
    </bean>
+   <!-- 商品 -->
    <bean id="goodsBiz" class="com.itheima.erp.biz.impl.GoodsBiz">
-   	<property name="goodsDao" ref="goodsDao"></property>
+   	<property name="goodsDao" ref="goodsDao"/>
+   	<property name="goodsTypeDao" ref="goodsTypeDao"/>
    </bean>
+   <!-- 商品类型 -->
    <bean id="goodsTypeBiz" class="com.itheima.erp.biz.impl.GoodsTypeBiz">
    	<property name="goodsTypeDao" ref="goodsTypeDao"/>
    </bean>
@@ -34,6 +40,7 @@
    <bean id="ordersBiz" class="com.itheima.erp.biz.impl.OrdersBiz">
    	<property name="ordersDao" ref="ordersDao"/>
    	<property name="empDao" ref="empDao"/>
+   	<property name="supplierDao" ref="supplierDao"/>
    </bean>
    <!-- 订单明细 -->
    <bean id="orderDetailBiz" class="com.itheima.erp.biz.impl.OrderDetailBiz">
@@ -61,5 +68,10 @@
    <!-- 报表 -->
    <bean id="reportBiz" class="com.itheima.erp.biz.impl.ReportBiz">
    	<property name="reportDao" ref="reportDao"/>
+   </bean>
+   <!-- 角色 -->
+   <bean id="roleBiz" class="com.itheima.erp.biz.impl.RoleBiz">
+   	<property name="roleDao" ref="roleDao"/>
+   	<property name="menuDao" ref="menuDao"/>
    </bean>
 </beans>

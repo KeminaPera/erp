@@ -1,6 +1,8 @@
 package com.itheima.erp.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
@@ -22,6 +24,7 @@ public class Emp {
 	private String address;     //员工地址
 	private Date birthday;      //员工生日
 	private Dep dep;            //所属部门
+	private List<Role> roles;   //用户角色
 	
 	public Long getUuid() {
 		return uuid;
@@ -82,5 +85,14 @@ public class Emp {
 	}
 	public void setDep(Dep dep) {
 		this.dep = dep;
+	}
+	public List<Role> getRoles() {
+		if(roles == null) {
+			roles = new ArrayList<>();
+		}
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 }

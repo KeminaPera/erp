@@ -12,7 +12,7 @@ import com.itheima.erp.entity.PageModel;
  */
 public interface IBaseBiz<T> {
 
-	List<T> findAll();
+	List<T> findAll(T t1, T t2);
 
 	PageModel<T> findByPage(T t1, T t2, Integer currPage, Integer pageSize);	
 	

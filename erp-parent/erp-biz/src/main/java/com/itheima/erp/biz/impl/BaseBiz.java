@@ -23,8 +23,8 @@ public class BaseBiz<T> implements IBaseBiz<T> {
 	/**
 	 * service层查询所有实体
 	 */
-	public List<T> findAll() {
-		return baseDao.findAll();
+	public List<T> findAll(T t1, T t2) {
+		return baseDao.findAll(t1, t2);
 	}
 
 	@Override

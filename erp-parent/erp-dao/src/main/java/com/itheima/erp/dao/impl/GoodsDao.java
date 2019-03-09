@@ -55,6 +55,10 @@ public class GoodsDao extends BaseDao<Goods> implements IGoodsDao {
 				System.out.println(price);
 				detachedCriteria.add(Restrictions.le("outprice", price));
 			}
+			String temp = null;
+			if((temp = goods2.getName()) != null && temp.trim().length() > 0) {
+				detachedCriteria.add(Restrictions.eq("name", temp));
+			}
 		}
 		return detachedCriteria;
 	}

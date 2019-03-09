@@ -8,8 +8,9 @@
 <script type="text/javascript" src="ui/jquery.min.js"></script>
 <script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
 <script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="js/crud.js"></script>
 <script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="ui/download.js"></script>
+<script type="text/javascript" src="js/crud.js"></script>
 <script type="text/javascript">
 var actionName = "goodsAction";
 var name="商品";
@@ -98,5 +99,11 @@ var columns=[
 		</table>
 	</form>
 </div>  
+<!-- 数据导入窗口 -->
+<div id="importDlg" class="easyui-dialog">
+	<form id="importForm" enctype="mutipart/form-data">
+		<input type="file" name="file"/>
+	</form>
+</div>
 </body>
 </html>

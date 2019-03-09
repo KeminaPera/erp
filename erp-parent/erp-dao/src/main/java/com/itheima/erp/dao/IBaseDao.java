@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IBaseDao<T> {
 
-	List<T> findAll();
+	List<T> findAll(T t1, T t2);
 
 	Integer getTotalRecordCount(T t1, T t2);
 

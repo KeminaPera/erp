@@ -1,6 +1,12 @@
 package com.itheima.erp.web.action;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.alibaba.fastjson.JSON;
 import com.itheima.erp.biz.IOrdersBiz;
@@ -95,5 +101,19 @@ public class OrdersAction extends BaseAction<Orders> {
 			e.printStackTrace();
 			returnOptionMessage(false, "确认失败！");
 		}
+	}
+	/**
+	 * 导出订单
+	 */
+	public void exportById() {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setHeader("Content-Disposition", "attachment;filename=orders_"+getUuid()+".xls");
+		ServletOutputStream out = null;
+		try {
+			out = response.getOutputStream();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ordersBiz.exportById(out, uuid);
 	}
 }

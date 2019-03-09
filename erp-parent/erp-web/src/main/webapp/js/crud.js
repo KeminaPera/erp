@@ -26,6 +26,20 @@ $(function() {
 					});
 				$('#editForm').form('clear');
 			}
+		},'-',{
+			text : '导出',
+			iconCls: 'icon-excel',
+			handler: function(){
+				//获取查询表单数据
+				var formData = $('#searchForm').serializeJSON();
+				$.download(actionName+'_export' + param,formData);
+			}
+		},'-',{
+			text : '导入',
+			iconCls: 'icon-save',
+			handler: function(){
+				$('#importDlg').dialog('open');
+			}
 		}],
 		columns : [ columns ]
 	});
@@ -55,12 +69,48 @@ $(function() {
 			}
 		});
 	});
+	
+	//数据导入窗口
+	$('#importDlg').dialog({ 
+		title:'数据导入',
+	    width: 330,    
+	    height: 106,    
+	    closed: true,    
+	    modal: true,
+	    buttons:[{
+			text:'导入',
+			handler:function(){
+				//通过ajax上传数据
+				$.ajax({
+					url:actionName + '_doImport',
+					type:'post',
+					data:new FormData($('#importForm')[0]),
+					processData:false,
+					contentType:false,
+					dataType:'json',
+					success : function(rtn){
+						$.messager.alert('提示', rtn.message,'info', function(){
+							$('#importDlg').dialog('close');
+							$('#importForm').form('clear');
+							$('#dg').datagrid('reload');
+						});
+					}
+				});
+			}
+		},{
+			text:'取消',
+			handler:function(){
+				$('#importDlg').dialog('close');
+				$('#importForm').form('clear');
+			}
+		}]
+	});
+	
 	//根据条件查询
 	$("#searchBtn").bind('click',function(){
 		var formData = $('#searchForm').serializeJSON();
 		$('#dg').datagrid('load',formData);
 	});
-	
 });
 
 //删除该记录

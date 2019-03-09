@@ -35,10 +35,10 @@ public abstract class BaseDao<T> extends HibernateDaoSupport implements IBaseDao
 	 * @return 
 	 */
 	@SuppressWarnings("unchecked")
-	public List<T> findAll(){
-		String name = clazz.getSimpleName();
-		System.out.println(name);
-		return (List<T>) this.getHibernateTemplate().find("from "+ name);
+	public List<T> findAll(T t1, T t2){
+		//添加条件
+		DetachedCriteria detachedCriteria = addCriteria(t1, t2);
+		return (List<T>) this.getHibernateTemplate().findByCriteria(detachedCriteria);
 	}
 
 	@SuppressWarnings("unchecked")

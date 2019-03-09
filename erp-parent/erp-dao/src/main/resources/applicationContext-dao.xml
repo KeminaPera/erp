@@ -55,4 +55,8 @@
    <bean id="reportDao" class="com.itheima.erp.dao.impl.ReportDao">
    	<property name="sessionFactory" ref="sessionFactory"/>
    </bean>
+   <!-- 角色 -->
+   <bean id="roleDao" class="com.itheima.erp.dao.impl.RoleDao">
+   	<property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
 </beans>

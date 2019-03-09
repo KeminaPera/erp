@@ -1,7 +1,10 @@
 package com.itheima.erp.web.action;
 
+import java.util.List;
+
 import com.itheima.erp.biz.IEmpBiz;
 import com.itheima.erp.entity.Emp;
+import com.itheima.erp.entity.TreeNode;
 /**
  * action层实现类
  * @author KeminaPera
@@ -15,6 +18,11 @@ public class EmpAction extends BaseAction<Emp> {
 	public void setEmpBiz(IEmpBiz empBiz) {
 		this.empBiz = empBiz;
 		super.setBaseBiz(this.empBiz);
+	}
+	private String checkedStr;
+	
+	public void setCheckedStr(String checkedStr) {
+		this.checkedStr = checkedStr;
 	}
 	//修改密码用的参数
 	private String oldPwd;
@@ -50,6 +58,27 @@ public class EmpAction extends BaseAction<Emp> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			returnOptionMessage(false, e.getMessage());
+		}
+	}
+	
+	/**
+	 * 获取用户角色
+	 */
+	public void readEmpRoles() {
+		List<TreeNode> empRoles = empBiz.readEmpRoles(getUuid());
+		parseObjectAndWrite(empRoles);
+	}
+	
+	/**
+	 * 修改用户角色
+	 */
+	public void updateEmpRoles() {
+		try {
+			empBiz.updateEmpRoles(getUuid(), checkedStr);
+			returnOptionMessage(true, "修改成功！");
+		} catch (Exception e) {
+			returnOptionMessage(false, "修改失败！");
+			e.printStackTrace();
 		}
 	}
 }

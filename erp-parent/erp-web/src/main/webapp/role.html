@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>角色管理</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/crud.js"></script>
+
+<script type="text/javascript">
+var actionName = "roleAction";
+var name = "角色";
+var columns = [    
+{field:'uuid',title:'角色编号',width:100},    
+{field:'name',title:'角色名称',width:100},    
+{field:'-',title:'操作',width:100, formatter: function(value,row,index){
+		return '<a href="javascript:void(0)" onclick="del('+row.uuid+')">删除</a> | '
+				+'<a href="javascript:void(0)" onclick="edit('+row.uuid+')">修改</a>';
+	}
+}   
+];
+</script>
+</head>
+<body>
+<div>
+	<!-- 查询 -->
+	<div></div>
+	<!-- 数据表格 -->
+	<table id="dg"></table> 
+	<!-- 添加编辑窗口 -->
+	<div id="editWindow">
+		<div>
+			<form id="editForm" method="post">  
+			    <div style="display:none">   
+			        <label for="name">角色ID:</label>   
+			        <input class="easyui-validatebox" type="text" name="t1.uuid" data-options="required:true" />
+			    </div>   
+			    <div>   
+			        <label for="name">角色名称:</label>   
+			        <input class="easyui-validatebox" type="text" name="t1.name" data-options="required:true" />
+			    </div>   
+			    <div>
+			    	<button id="editBtn" type="button" class="easyui-linkbutton" >提交</button>
+		    		<button id="clearBtn" type="button" class="easyui-linkbutton" onclick="clearForm('editForm')">重置</button>
+			    </div>
+			</form>  
+		</div>
+	</div> 
+</div>
+</body>
+</html>

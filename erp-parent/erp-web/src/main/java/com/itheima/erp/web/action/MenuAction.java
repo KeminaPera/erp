@@ -8,7 +8,7 @@ import com.itheima.erp.entity.Menu;
  *
  */
 public class MenuAction extends BaseAction<Menu> {
-
+	
 	//注入IMenuBiz
 	private IMenuBiz menuBiz;
 	
@@ -18,10 +18,11 @@ public class MenuAction extends BaseAction<Menu> {
 	}
 
 	/**
-	 * 获取菜单树（所有的菜单）
+	 * 获取菜单树（该用户下的所有菜单）
 	 */
 	public void getMenutree() {
-		Menu menu = menuBiz.findById("0");
+		Menu menu = menuBiz.getMenusByEmpuuid(getLoginUser().getUuid());
 		this.parseObjectAndWrite(menu);
 	}
+	
 }

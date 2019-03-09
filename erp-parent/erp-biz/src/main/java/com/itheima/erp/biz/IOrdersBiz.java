@@ -1,5 +1,7 @@
 package com.itheima.erp.biz;
 
+import java.io.OutputStream;
+
 import com.itheima.erp.entity.Orders;
 /**
  * service层订单接口
@@ -12,4 +14,5 @@ public interface IOrdersBiz extends IBaseBiz<Orders> {
 
 	void doStart(Long starteruuid, Long uuid);
 
+	void exportById(OutputStream out, Long uuid);
 }

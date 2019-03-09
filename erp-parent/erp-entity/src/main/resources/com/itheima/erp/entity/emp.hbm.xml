@@ -21,5 +21,10 @@
 		
 		<!-- 配置与部门的联系 -->
 		<many-to-one name="dep" column="depuuid" class="com.itheima.erp.entity.Dep"></many-to-one>
+		<!-- 配置与角色的联系 -->
+		<bag name="roles" table="emp_role">
+			<key column="empuuid"></key>
+			<many-to-many class="com.itheima.erp.entity.Role" column="roleuuid"></many-to-many>
+		</bag>
 	</class>
 </hibernate-mapping>
